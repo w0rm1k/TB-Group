@@ -52,9 +52,7 @@ const slider = (props) => {
             <div className="Slider__scales">
                 {scales}
             </div>
-            <div className="Slider__fields">
-                {slider_fields}
-            </div>
+            {slider_fields}
             <p>{props.value}</p>
         </div>
     )
