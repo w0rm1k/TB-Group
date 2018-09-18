@@ -9,16 +9,16 @@
     margin: 10px 5px;
 }
 
-.Switcher_toggleOn {
+.Switcher_on {
     background: rgb(76, 217, 100);
 }
 
-.Switcher_non-active {
+.Switcher_inactive {
     cursor: no-drop;
     opacity: 0.3;
 }
 
-.Toggle_button {
+.Switcher__toggler {
     position: absolute;
     width: 20px;
     height: 20px;
@@ -29,6 +29,6 @@
     transition: all .5s;
 }
 
-.Toggle_button-right {
+.Switcher__toggler_right {
     transform: translateX(20px)
 }

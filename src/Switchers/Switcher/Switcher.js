@@ -3,15 +3,15 @@ import './Switcher.css';
 
 const switcher = (props) => {
     const classNameSwitcher = ['Switcher'];
-    const classNameToggle = ['Toggle_button']
+    const classNameToggle = ['Switcher__toggler']
 
     if (props.checked) {
-        classNameSwitcher.push('Switcher_toggleOn');
-        classNameToggle.push('Toggle_button-right');
+        classNameSwitcher.push('Switcher_on');
+        classNameToggle.push('Switcher__toggler_right');
     }
 
     if (!props.active) {
-        classNameSwitcher.push('Switcher_non-active')
+        classNameSwitcher.push('Switcher_inactive')
     }
     
     return (

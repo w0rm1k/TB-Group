@@ -8,7 +8,9 @@ const sliders = (props) => (
             1. Enabled
             <Slider min={props.min}
                     max={props.max}
-                    click={props.click}
+                    change={props.change}
+                    start={props.startMove}
+                    end={props.endMove}
                     value={props.value} />
         </label>
         <label>

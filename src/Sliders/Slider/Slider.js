@@ -2,14 +2,14 @@ import React from 'react';
 import './Slider.css';
 
 const slider = (props) => {
-    let sliderClassName = ['Slider-container'];
+    let sliderClassName = ['Slider'];
     if (props.disabled) {
-        sliderClassName.push('Slider-container_non-active');
+        sliderClassName.push('Slider_inactive');
     }
     const labels = [props.min, props.max];
     const scales = labels.map((label, idx) => {
         return (
-            <div className="Slider-scale"
+            <div className="Slider__scale"
                 key={idx}>
                 {label}
             </div>
@@ -21,23 +21,26 @@ const slider = (props) => {
     }
     const thumb = (
         <div 
-            className="Slider-thumb">
+            className="Slider__thumb">
         </div>
     );
-    const slider_lines = array.map((el, idx) => {
+    const widthSliderField = String(100 / (props.max - props.min)) + '%';
+    const slider_fields = array.map((_, idx) => {
         return (
-            <div className="Slider-field"
+            <div className="Slider__field"
                 data-value={idx}
                 key={idx}
-                onClick={props.click}
-                onMouseDown={props.click}>
+                onClick={props.change}
+                onMouseDown={props.start}
+                onMouseUp={props.end}
+                style={{width: widthSliderField}}>
                 {props.value > idx 
-                    ?   <div className="Slider-line Slider-line_selected"
-                           data-value={idx}>
+                    ?   <div className="Slider__line Slider__line_selected"
+                        data-value={idx}>
                         </div>
-                    :   <div className="Slider-line"
+                    :   <div className="Slider__line"
                             data-value={idx}>
-                         </div>
+                        </div>
                 }
                 {props.value === idx ? thumb : null}
             </div>
@@ -46,19 +49,21 @@ const slider = (props) => {
 
     return (
         <div className={sliderClassName.join(' ')}>
-            <div className="Slider-scales">
+            <div className="Slider__scales">
                 {scales}
             </div>
-            {slider_lines}
+            <div className="Slider__fields">
+                {slider_fields}
+            </div>
             <p>{props.value}</p>
-         </div>
+        </div>
     )
 }
 
 slider.defaultProps ={
     min: 0,
-    max: 100,
-    value: 25
+    max: 50,
+    value: 20
 }
 
 export default slider;

@@ -13,9 +13,25 @@ class App extends Component {
       max: 100,
       currentValue: 0
     }
-    
 	}
-	
+  
+  handleStart = () => {
+    document.addEventListener('mousemove', this.handleDrag);
+    document.addEventListener('mouseup', this.handleEnd);
+  };
+
+  handleEnd = () => {
+    document.removeEventListener('mousemove', this.handleDrag);
+    document.removeEventListener('mouseup', this.handleEnd);
+  };
+
+  handleDrag = e => {
+    if (e.target.className !== 'Slider__field') return;
+    if (e.target.className === 'Slider__field') {
+        this.handleOnChangeSlider(e);
+    }
+  };
+
 	handleClickFirstToggled = () => {
 		const toggleOnFirst = this.state.toggleOnFirst;
 		this.setState({toggleOnFirst: !toggleOnFirst})
@@ -26,7 +42,7 @@ class App extends Component {
 		this.setState({toggleOnSecond: !toggleOnSecond})
   }
 
-  handleClickSlider = (e) => {
+  handleOnChangeSlider = (e) => {
     const currentValue = +e.target.dataset.value;
     if (isNaN(currentValue)) {
       return;
@@ -45,7 +61,9 @@ class App extends Component {
         <h2>Sliders:</h2>  
         <Sliders min={this.state.min}
                 max={this.state.max}
-                click={this.handleClickSlider}
+                change={this.handleOnChangeSlider}
+                startMove={this.handleStart}
+                endMove={this.handleEnd}
                 value={this.state.currentValue}/>
       </div>
     );
